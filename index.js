@@ -7,30 +7,8 @@ const cors = require('cors')
 app.use(cors())
 app.use(morgan('combined'))
 
-const db = mysql.createConnection ({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'btl_2'
-})
+const router = require('./router/index');
 
-app.post('/trangchu', function(req, res) {
-
-}) 
-
-app.get('/show', function (req, res) {
-  db.query('SELECT fullname, CCCD,  gender, address, religion, job FROM `resume_btl` ', (err, result) => {
-    if (err) {
-      console.log(err)
-    }
-    else {
-      res.send(result)
-    }
-  })
-})
- 
-app.get('/trangchu', function (req, res) {
-  res.send('Hello World')
-})
+app.use(router);
  
 app.listen(3000);
