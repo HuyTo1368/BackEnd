@@ -19,7 +19,7 @@ app.post('/trangchu', function(req, res) {
 }) 
 
 app.get('/show', function (req, res) {
-  db.query('SELECT fullname, CCCD,  gender, address, religion, job FROM `resume_btl` ', (err, result) => {
+  db.query('SELECT COUNT(province_id) as summ FROM province', (err, result) => {
     if (err) {
       console.log(err)
     }
@@ -33,4 +33,4 @@ app.get('/trangchu', function (req, res) {
   res.send('Hello World')
 })
  
-app.listen(3000);
+app.listen(5000);
