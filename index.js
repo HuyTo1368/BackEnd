@@ -7,30 +7,8 @@ const cors = require('cors')
 app.use(cors())
 app.use(morgan('combined'))
 
-const db = mysql.createConnection ({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'btl_2'
-})
+const router = require('./router/index');
 
-app.post('/trangchu', function(req, res) {
-
-}) 
-
-app.get('/show', function (req, res) {
-  db.query('SELECT COUNT(province_id) as summ FROM province', (err, result) => {
-    if (err) {
-      console.log(err)
-    }
-    else {
-      res.send(result)
-    }
-  })
-})
+app.use(router);
  
-app.get('/trangchu', function (req, res) {
-  res.send('Hello World')
-})
- 
-app.listen(5000);
+app.listen(3000);
