@@ -1,14 +1,19 @@
 const express = require('express')
 const morgan = require('morgan')
-const app = express()
 const mysql = require('mysql')
 const cors = require('cors')
+const app = express()
+const bodyParser = require('body-parser')
+const router = require('./router/index');
 
 app.use(cors())
 app.use(morgan('combined'))
 
-const router = require('./router/index');
-
+app.use(express.json())
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(router);
- 
-app.listen(3000);
+
+const port = 5000;
+app.listen(port,()=>{
+    console.log("Server listen port =" + port)
+});

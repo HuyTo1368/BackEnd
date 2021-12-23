@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
 
 router.get('/town', async (req, res) => {
     const danhsach = await selectTown(req.query.province);
+    console.log(danhsach)
     res.json(danhsach);
 })
 
