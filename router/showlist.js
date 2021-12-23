@@ -8,14 +8,5 @@ router.get('/', async (req, res) => {
     res.json(danhsach);
 })
 
-router.get('/showhuyen', async (req, res) => {
-    const danhsach = await showlist(req.query.tinh,req.query.huyen );
-    res.json(danhsach);
-})
-
-router.get('/showxa', async (req, res) => {
-    const danhsach = await showlist(req.query.tinh );
-    res.json(danhsach);
-})
 
 module.exports = router;
