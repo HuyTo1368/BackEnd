@@ -1,0 +1,42 @@
+const db = require('./index')
+
+exports.selectProvince_phan_tich = (dataPro, town, village) => {
+    let query;
+    if(town == 'checktown'){
+        query = `SELECT count(*) as Nam from view_danso
+        WHERE gender = 'Nam' and view_danso.province = '${dataPro}'
+        UNION
+        SELECT count(*)  from view_danso
+        WHERE gender = 'Nữ' and view_danso.province = '${dataPro}'
+        `
+    }
+    else{
+        if(village == 'checkvillage'){
+            query = `SELECT count(*) as Nam from view_danso
+            WHERE gender = 'Nam' and view_danso.town = '${town}'
+            UNION
+            SELECT count(*)  from view_danso
+            WHERE gender = 'Nữ' and view_danso.town = '${town}'`
+        }
+        else{
+            query = `SELECT count(*) as Nam from view_danso
+            WHERE gender = 'Nam' and view_danso.village = '${village}'
+            UNION
+            SELECT count(*)  from view_danso
+            WHERE gender = 'Nữ' and view_danso.village = '${village}'`
+        }
+
+    }
+    
+    return new Promise((resolve, reject) => {
+        db.query(query, (err, result) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                resolve(result);
+            }
+        });
+    });
+};
+

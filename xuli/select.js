@@ -15,7 +15,7 @@ exports.selectProvince = () => {
 };
 
 exports.selectTown = (province) => {
-    const query = ` SELECT town.town_name FROM town INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}"; `;
+    const query = ` SELECT town.town_name  FROM town INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}"; `;
     return new Promise((resolve, reject) => {
         db.query(query, (err, result) => {
             if (err) {
