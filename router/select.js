@@ -4,18 +4,20 @@ const {selectProvince, selectTown, selectVillage} = require('../xuli/select');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    const danhsach = await selectProvince();
+    const danhsach = await selectProvince(req.query.role, req.query.user);
     res.json(danhsach);
 })
 
 router.get('/town', async (req, res) => {
-    const danhsach = await selectTown(req.query.province);
+    const data = req.query;
+    const danhsach = await selectTown(data.province, data.role, data.user);
     console.log(danhsach)
     res.json(danhsach);
 })
 
 router.get('/village', async (req, res) => {
-    const danhsach = await selectVillage(req.query.province, req.query.town);
+    const data = req.query;
+    const danhsach = await selectVillage(data.province, data.town, data.role, data.user);
     res.json(danhsach);
 })
 
