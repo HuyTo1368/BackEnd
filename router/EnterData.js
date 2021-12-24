@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.post("/", async (req, res) => {
   const t = await setEnterData(req.body);
-  res.send("Oke");
+  res.send("Ok");
 });
 module.exports = router;

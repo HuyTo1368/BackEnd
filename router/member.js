@@ -1,5 +1,6 @@
 const express = require("express");
-const getMember = require("../xuli/getMember")
+const {getMember, getAllUser} = require("../xuli/member")
+
 const router = express.Router();
 
 
@@ -10,6 +11,11 @@ router.get('/', async (req, res) =>{
 })
 
 router.post('/add', async (req, res) =>{
-    res.json("okeeee");
+
+    res.json("Ok");
+})
+router.get('/user', async (req, res) =>{
+    const temp = await getAllUser();
+    res.json(temp);
 })
 module.exports = router;
