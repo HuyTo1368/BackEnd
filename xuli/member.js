@@ -12,8 +12,8 @@ const db = require("./index")
     function addMember(data){
         
     }
-    exports.getAllUser =() =>{
-        const query = `SELECT * FROM user_btl`;
+    exports.getAllUser =(role,user) =>{
+        const query = `SELECT * FROM user_btl WHERE role = '${role}' AND parent_user ='${user}'`;
         return new Promise((resolve, reject) => {
             db.query(query, (err, results) => {
                 if (err) return reject(err);

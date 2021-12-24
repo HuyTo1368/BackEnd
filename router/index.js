@@ -12,7 +12,7 @@ const member = require('./member')
 const tracuuThongtin = require('./search')
 const router = express.Router();
 const login = require('./login')
-
+const currentUser = require('./currentUser')
 router.use('/show', showlist);
 router.use('/select', selectAddress)
 //tien do
@@ -32,5 +32,6 @@ router.use('/Nhaplieu', EnterData)
 router.use('/member', member )
 router.use('/search', tracuuThongtin);
 router.use('/login', login)
+router.use('/current-user', currentUser)
 
 module.exports = router;

@@ -10,7 +10,6 @@ router.post("/", async (req, res) => {
     jwt.sign({ user: danhsach[0] }, "secretkey", (err, token) => {
       danhsach[0].token = token;
       res.cookie("token", token);
-      console.log(token);
       res.json(danhsach[0]);
     });
   } else {

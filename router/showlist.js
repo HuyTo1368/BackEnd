@@ -1,9 +1,10 @@
 const express = require('express');
 const {showlist} = require('../xuli/showlist');
+const verifyMW = require('./verifyMW')
 
 const router = express.Router();
 
-router.get('/', async (req, res) => {
+router.get('/',verifyMW, async (req, res) => {
     const danhsach = await showlist(req.query.tinh,req.query.huyen, req.query.xa );
     res.json(danhsach);
 })
