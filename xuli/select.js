@@ -21,7 +21,6 @@ exports.selectProvince = (role, user) => {
     });
 };
 
-<<<<<<< HEAD
 exports.selectTown = (province, role, user) => {
     let query;
     if(role == 'A2' || role == 'A1') {
@@ -32,10 +31,6 @@ exports.selectTown = (province, role, user) => {
         query = `SELECT town.town_name FROM town INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}" AND town.town_id = "${id_town}"`;
     }
    
-=======
-exports.selectTown = (province) => {
-    const query = ` SELECT town.town_name  FROM town INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}"; `;
->>>>>>> 8760cb7313f03dd86df2fb22a83535656a208902
     return new Promise((resolve, reject) => {
         db.query(query, (err, result) => {
             if (err) {
