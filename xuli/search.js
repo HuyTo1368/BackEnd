@@ -1,8 +1,10 @@
 const db = require('./index')
 
-exports.searchResume = (province, town, village, fullname, cccd, hometown, job, religion) => {
+exports.searchResume = (province, town, village, fullname, cccd, hometown, job, religion, role, user) => {
+    let check;
     let huy = `Select fullname, CCCD, DATE_FORMAT(datebirth, '%m/%d/%Y') as datebirth, hometown, gender, address, job, religion, village, town, province From view_danso WHERE`;
     let s = 0;
+    
     if (town == "all_province") {
         huy = huy + ' town IS NOT null ';
     } else {
@@ -58,6 +60,20 @@ exports.searchResume = (province, town, village, fullname, cccd, hometown, job, 
     } else {
         huy = huy + `AND religion = "${religion}" `;
         s = s+1;
+    }
+
+   
+    if (role == 'A2') {
+        check = user.slice(0,2);
+        huy = huy +  `AND province in (SELECT province FROM province WHERE province_id = "${check}")`
+        }
+    else if (role == 'A3') {
+        check = user.slice(2,4);
+        huy = huy +  `AND town in (SELECT town_name FROM town WHERE town_id = "${check}")`
+    }
+    else if (role == 'B1') {
+        check = user.slice(4,6);
+        huy = huy +  `AND village in (SELECT village_name FROM village WHERE village_id = "${check}")`
     }
 
     if (s == 0) {
