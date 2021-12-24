@@ -2,9 +2,22 @@ const express = require('express');
 const mysql = require('mysql');
 const db = require('./index')
 
-exports.showlist = () => {
+exports.showlist = (tinh, huyen, xa) => {
+    let kq ='';
+    if (huyen == 'all_province') {
+        kq = `SELECT fullname, CCCD,  gender, address, religion, job FROM view_danso WHERE province ="${tinh}" `
+    }
+    else {
+        if (xa == 'all_town') {
+            kq = `SELECT fullname, CCCD,   gender, address, religion, job FROM view_danso WHERE province ="${tinh}" AND town = "${huyen}" `
+        }
+        else {
+            kq = `SELECT fullname, CCCD,  gender, address, religion, job FROM view_danso WHERE province ="${tinh}" AND town = "${huyen}" AND village = "${xa}" `
+        }
+    }
+    
     return new Promise ((resolve, reject) => {
-        db.query('SELECT fullname, CCCD,  gender, address, religion, job FROM `resume_btl` ', (err, result) => {
+        db.query(kq, (err, result) => {
             if (err) {
                 reject(err);
             }

@@ -7,7 +7,11 @@ const select_phan_tich2 = require('./callapiphanTich2')
 const select_phan_tich3 = require('./callapiphanTich3')
 const select_phan_tich4 = require('./callapiphanTich4')
 const select_phan_tich5 = require('./callapiphanTich5')
+const EnterData = require('./EnterData')
+const member = require('./member')
+const tracuuThongtin = require('./search')
 const router = express.Router();
+const login = require('./login')
 
 router.use('/show', showlist);
 router.use('/select', selectAddress)
@@ -23,4 +27,10 @@ router.use('/show4', select_phan_tich3)
 router.use('/show5', select_phan_tich4)
 //thống kê về dân tộc
 router.use('/show6', select_phan_tich5)
+module.exports = router;
+router.use('/Nhaplieu', EnterData)
+router.use('/member', member )
+router.use('/search', tracuuThongtin);
+router.use('/login', login)
+
 module.exports = router;
