@@ -13,25 +13,26 @@ const tracuuThongtin = require('./search')
 const router = express.Router();
 const login = require('./login')
 const currentUser = require('./currentUser')
-router.use('/show', showlist);
-router.use('/select', selectAddress)
+const verifyMW = require('./verifyMW')
+router.use('/show',verifyMW, showlist);
+router.use('/select',verifyMW, selectAddress)
 //tien do
-router.use('/show1', select_tien_do)
+router.use('/show1',verifyMW, select_tien_do)
 //gioi tinh nam
-router.use('/show2', select_phan_tich)
+router.use('/show2',verifyMW, select_phan_tich)
 //gioi tinh nu
-router.use('/show3', select_phan_tich2)
+router.use('/show3',verifyMW, select_phan_tich2)
 //tren 18 tuoi
-router.use('/show4', select_phan_tich3)
+router.use('/show4',verifyMW, select_phan_tich3)
 //dưới 18 tủi
-router.use('/show5', select_phan_tich4)
+router.use('/show5',verifyMW, select_phan_tich4)
 //thống kê về dân tộc
-router.use('/show6', select_phan_tich5)
+router.use('/show6',verifyMW, select_phan_tich5)
 module.exports = router;
-router.use('/Nhaplieu', EnterData)
-router.use('/member', member )
-router.use('/search', tracuuThongtin);
+router.use('/Nhaplieu',verifyMW, EnterData)
+router.use('/member',verifyMW, member )
+router.use('/search',verifyMW, tracuuThongtin);
 router.use('/login', login)
-router.use('/current-user', currentUser)
+router.use('/current-user',verifyMW, currentUser)
 
 module.exports = router;

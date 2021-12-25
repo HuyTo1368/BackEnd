@@ -2,18 +2,18 @@ const db = require("./index");
 
 async function setEnterData(data) {
   const hometown =
-    data.hometown.province +
+    data.hometown.village +
     ", " +
     data.hometown.town +
     ", " +
-    data.hometown.village;
+    data.hometown.province;
   const address =
-    data.address.province +
+    data.address.village +
     ", " +
     data.address.town +
     ", " +
-    data.address.village;
-  const village_id = await getVillageId(data.hometown);
+    data.address.province;
+  const village_id = await getVillageId(data.address);
   const query = `INSERT INTO resume_btl (CCCD, fullname, datebirth, gender, hometown, address, religion, job, village_id) VALUES ('${data.CCCD}', '${data.fullName}', '${data.datebirth}', '${data.gender}', '${hometown}', '${address}', '${data.region}', '${data.job}', '${village_id[0].village_id}');`;
   return new Promise((resolve, reject) => {
     db.query(query, (err, results) => {

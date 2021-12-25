@@ -1,20 +1,26 @@
 const express = require("express");
-const {getMember, getAllUser} = require("../xuli/member")
+const {getMember, getAllUser, getUser, setUser, setTimeOpen, setTimeClose} = require("../xuli/member")
 const jwt = require('jsonwebtoken')
 const router = express.Router();
-const verifyMW = require('./verifyMW');
 
-router.get('/',verifyMW, async (req, res) =>{
+router.get('/', async (req, res) =>{
     const result = await getMember();
     console.log(result)
     res.json(result);
 })
 
-router.post('/add',verifyMW, async (req, res) =>{
+router.post('/add', async (req, res) =>{
+    const t = await getUser(req.body.user)
+    if(t.length == 0){
+        const nhap = await setUser(req.body);
+        res.json('ok')
+    }
+    else res.json("no")
 
-    res.json("Ok");
+    
+    
 })
-router.get('/user',verifyMW, async (req, res) =>{
+router.get('/user', async (req, res) =>{
     const role = req.query.role
     const user = req.query.user;
     var roleDown;
@@ -30,9 +36,19 @@ router.get('/user',verifyMW, async (req, res) =>{
     else if(role==='B1'){
         roleDown = 'B2';
     }
-    console.log(roleDown + 'user la '+ user);
+
     const temp = await getAllUser(roleDown, user);
-    console.log(temp);
+   console.log(temp);
+
     res.json(temp);
+})
+
+router.get('/timeOpen', async(req,res)=>{
+    const xuli = await setTimeOpen(req.query.data, req.query.user)
+    res.json("set Time Open Done")
+})
+router.get('/timeClose', async(req,res)=>{
+    const xuli = await setTimeClose(req.query.data, req.query.user)
+    res.json("set Time Close Done")
 })
 module.exports = router;
