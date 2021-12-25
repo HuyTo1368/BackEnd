@@ -66,7 +66,7 @@ exports.searchResume = (province, town, village, fullname, cccd, hometown, job, 
     if (role == 'A2') {
         check = user.slice(0,2);
         huy = huy +  `AND province in (SELECT province FROM province WHERE province_id = "${check}")`
-        }
+    }
     else if (role == 'A3') {
         check = user.slice(0,4);
         huy = huy +  `AND town in (SELECT town_name FROM town WHERE town_id = "${check}")`
