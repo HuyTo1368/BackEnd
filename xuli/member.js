@@ -59,3 +59,14 @@ exports.setTimeClose = (data, user) => {
       });
     });
   };
+  exports.setPer = (data, user) => {
+    const query = `UPDATE user_btl 
+          SET per_declare = '${data}'
+          WHERE user = '${user}'`;
+    return new Promise((resolve, reject) => {
+      db.query(query, (err, results) => {
+        if (err) return reject(err);
+        return resolve(results);
+      });
+    });
+  };

@@ -1,5 +1,5 @@
 const express = require("express");
-const {getMember, getAllUser, getUser, setUser, setTimeOpen, setTimeClose} = require("../xuli/member")
+const {getMember, getAllUser, getUser, setUser, setTimeOpen, setTimeClose,setPer} = require("../xuli/member")
 const jwt = require('jsonwebtoken')
 const router = express.Router();
 
@@ -38,7 +38,7 @@ router.get('/user', async (req, res) =>{
     }
 
     const temp = await getAllUser(roleDown, user);
-   console.log(temp);
+//    console.log(temp[0].role);
 
     res.json(temp);
 })
@@ -51,4 +51,12 @@ router.get('/timeClose', async(req,res)=>{
     const xuli = await setTimeClose(req.query.data, req.query.user)
     res.json("set Time Close Done")
 })
+
+router.get('/setPer', async(req,res)=>{
+    const xuli = await setPer(req.query.per, req.query.user)
+    res.json("set Per Done")
+})
 module.exports = router;
+
+
+

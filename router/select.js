@@ -1,5 +1,5 @@
 const express = require('express');
-const {selectProvince, selectTown, selectVillage} = require('../xuli/select');
+const { selectProvince, selectTown, selectVillage } = require('../xuli/select');
 const verifyMW = require('./verifyMW')
 const router = express.Router();
 
