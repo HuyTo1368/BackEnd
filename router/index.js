@@ -12,6 +12,8 @@ const member = require('./member')
 const tracuuThongtin = require('./search')
 const router = express.Router();
 const login = require('./login')
+const currentUser = require('./currentUser')
+
 
 router.use('/show', showlist);
 router.use('/select', selectAddress)
@@ -29,8 +31,9 @@ router.use('/show5', select_phan_tich4)
 router.use('/show6', select_phan_tich5)
 module.exports = router;
 router.use('/Nhaplieu', EnterData)
-router.use('/member', member )
+router.use('/member', member)
 router.use('/search', tracuuThongtin);
 router.use('/login', login)
+router.use('/current-user', currentUser)
 
 module.exports = router;

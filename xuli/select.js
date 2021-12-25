@@ -27,7 +27,7 @@ exports.selectTown = (province, role, user) => {
         query = `SELECT town.town_name FROM town INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}"; `;
     }
     else{
-        let id_town = user.slice(2,4);
+        let id_town = user.slice(0,4);
         query = `SELECT town.town_name FROM town INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}" AND town.town_id = "${id_town}"`;
     }
    
@@ -49,7 +49,7 @@ exports.selectVillage = (province, town,  role, user) => {
         query = ` SELECT village.village_name FROM village INNER JOIN town ON village.town_id = town.town_id INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}" AND town.town_name = "${town}"; `;
     }
     else {
-        let id_village = user.slice(4,6);
+        let id_village = user.slice(0,6);
         query = ` SELECT village.village_name FROM village INNER JOIN town ON village.town_id = town.town_id INNER JOIN province ON province.province_id = town.province_id WHERE province.province = "${province}" AND town.town_name = "${town}" AND village.village_id = '${id_village}'; `;
     }
     return new Promise((resolve, reject) => {
