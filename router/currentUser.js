@@ -12,6 +12,7 @@ router.get('/',verifyMW, async (req, res) =>{
           res.sendStatus(403);
         }
         else {
+          console.log(authData.user);
           res.json(authData.user);
         }
       });

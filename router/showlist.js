@@ -5,7 +5,7 @@ const verifyMW = require('./verifyMW')
 const router = express.Router();
 
 router.get('/', verifyMW, async (req, res) => {
-    const danhsach = await showlist(req.query.tinh, req.query.huyen, req.query.xa);
+    const danhsach = await showlist(req.query.tinh, req.query.huyen, req.query.xa, req.query.role);
     res.json(danhsach);
 })
 
