@@ -29,7 +29,7 @@ exports.getUser = (user) => {
   });
 };
 exports.setUser = (data) => {
-  const query = `INSERT INTO user_btl(user, PASSWORD, name_unit,role) VALUES('${data.user}', '${data.password}', '${data.name}','${data.role}')`;
+  const query = `INSERT INTO user_btl(user, PASSWORD, name_unit,role, parent_user) VALUES('${data.user}', '${data.password}', '${data.name}','${data.role}', '${data.parent_user}')`;
   return new Promise((resolve, reject) => {
     db.query(query, (err, results) => {
       if (err) return reject(err);
