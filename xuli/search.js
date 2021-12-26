@@ -91,3 +91,19 @@ exports.searchResume = (province, town, village, fullname, cccd, hometown, job, 
         });
     });
 };
+
+
+exports.deleteResume = (cccd) => {
+    let huy= `DELETE FROM resume_btl WHERE CCCD = "${cccd}"`
+
+    return new Promise((resolve, reject) => {
+        db.query(huy, (err, result) => {
+            if (err) {
+                reject(err);
+            }
+            else {
+                resolve(result);
+            }
+        });
+    });
+}
