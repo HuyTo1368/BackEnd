@@ -10,15 +10,22 @@ router.get('/', async (req, res) =>{
 })
 
 router.post('/add', async (req, res) =>{
-    const t = await getUser(req.body.user)
-    if(t.length == 0){
-        const nhap = await setUser(req.body);
-        res.json('ok')
-    }
-    else res.json("no")
 
-    
-    
+    if(req.body.user){
+        try {
+            const t = await getUser(req.body.user)
+            if(t.length == 0){
+                const nhap = await setUser(req.body);
+                res.json('ok')
+            }
+            else res.json("no")
+        } catch (error) {
+            res.json('no')
+        }
+        
+    }
+    else res.json('no')
+
 })
 router.get('/user', async (req, res) =>{
     const role = req.query.role

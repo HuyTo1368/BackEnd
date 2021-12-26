@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const router = require("./router/index");
 const cookieParser = require('cookie-parser')
-const  getVillageId  = require("./xuli/EnterData");
+
 
 app.use(cors({credentials: true,origin: 'http://localhost:3006'}
   
